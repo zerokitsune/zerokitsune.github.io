@@ -1,0 +1,95 @@
+html, body, div, span, h1, h2, h3, h4, h5, h6, p,
+a, ol, ul, li{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+ul,ol,li { list-style:none;}
+a {text-decoration: none;}
+html,body {
+	height: 100%;
+	width: 100%;
+	background: #7ddbe4;
+	color: #fff
+}
+.user-info {
+	z-index: 999;
+	position: absolute;
+	width: 30%;
+	background: #999;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	border-right: 1px solid #fff
+}
+.basic-info .avatar {
+	width: 30%;
+	margin: 0 auto;
+	margin-top: 40px;
+	padding-bottom: 30%;
+	background-image: url(img/avatar.jpeg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 50%;
+	border: 1px solid yellow;
+}
+.basic-info .nickname {
+	margin-top: 25px;
+	text-align:center;
+	font-size: 25px;
+	font-weight: bolder;
+	/*color: #000;*/
+}
+.main-info {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+.main-info li {
+	padding: 10px;
+}
+.main-info li a {color: #fff}
+.main-info li i {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	margin: 0 20px;
+}
+.main-info li.qq i {
+	background-image: url(img/qq.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.main-info li.email i {
+	background-image: url(img/email.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.main-info li.perweb i {
+	background-image: url(img/github.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.main-cont {
+	position: absolute;
+	width: 70%;
+	background: #999;
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+.life,.edu-expre,.evaluation {
+	margin: 40px 0 0 40px;
+}
+.life li,.edu-expre li,.evaluation li {
+	list-style: disc;
+	margin: 10px 0 0 40px;
+	text-indent: 20px;
+	font-size: 16px;
+}
+.life h1,.edu-expre h1,.evaluation h1 {
+	font-size: 40px;
+}

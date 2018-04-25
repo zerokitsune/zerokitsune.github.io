@@ -1,0 +1,46 @@
+html, body, div, span, h1, h2, h3, h4, h5, h6, p,
+a, ol, ul, li{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+ul,ol,li { list-style:none;}
+a {text-decoration: none;}
+html,body {
+	height: 100%;
+	width: 100%;
+	background: #7ddbe4;
+	color: #fff
+}
+.task {
+	margin-left: 30%;
+	border-left: 2px solid #fff;	
+}
+.task li {
+	height: 70px;
+	position: relative;
+}
+.task li a {
+	display: inline-block;
+	margin-left: 20px;
+	margin-top: 15px;
+	color: #fff;
+	font-size: 22px;
+}
+.task li b:before {
+	content: " ";
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	background: #7ddbe4;
+	top: 15px;
+	left: -11px;
+	border-radius: 50%;
+	border: 2px solid #fff;
+}
+.task a:hover{
+	color: #000;
+}
