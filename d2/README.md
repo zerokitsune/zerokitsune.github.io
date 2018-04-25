@@ -118,9 +118,10 @@
 
 <h2 id="2.8">列表</h2>
 
--列表
+- 列表
 	+ ul
 	+ ol
+	+ dl
 
 - ul(Unordered List 无序列表),li(lists/list item 目录，清单/列表单元)
 	__以下将是一个无序列表带着两个列表单元的例子__
