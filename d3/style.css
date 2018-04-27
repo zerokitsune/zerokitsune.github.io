@@ -23,7 +23,8 @@ html,body {
 */	top: 0;
 	left: 0;
 	bottom: 0;
-	border-right: 2px solid #fff
+	/*border-right: 2px solid #fff;*/
+	box-shadow: 3px 0 10px #fff
 }
 .basic-info .avatar {
 	width: 30%;
