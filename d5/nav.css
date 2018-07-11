@@ -1,0 +1,16 @@
+nav {
+	position: fixed;
+	top: 30px;
+	right: 40px;
+}
+nav a {
+	display: block;
+	padding: 20px;
+	background-color: #7bbfea;
+	text-decoration: none;
+	color: #fff;
+	margin-bottom: 2px
+}
+nav a:hover{
+	color: #000
+}
