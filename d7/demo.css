@@ -1,0 +1,112 @@
+* {
+	box-sizing: border-box;
+}
+html,body {
+	margin: 0;
+	padding: 0;
+}
+.percent, .twoLayout, .threeLayout {
+	border: 2px dashed #548B54;
+	padding-bottom: 20px;
+}
+h2 {
+	border-left: 15px solid #48D1CC;
+	border-bottom: 2px solid #ccc;
+}
+.l,.r,.c {
+	height: 30px;
+}
+.l {background-color: #87CEFF}
+.r {background-color: #7AC5CD}
+.c {background-color: #27408B}
+.floatPercent .l {
+	float: left;
+	width: 30%;
+}
+.positionPercent {
+	position: relative;
+}
+.positionPercent .l {
+	position: absolute;
+	width: 30%;
+}
+.FlexPercent {
+	display: flex;
+}
+.FlexPercent .l {
+	flex: 0 0 30%;
+}
+.FlexPercent .r {
+	flex: 0 0 70%;
+}
+
+
+
+
+
+
+
+
+
+.floatLayout .l {
+	float: left;
+	width: 200px;
+}
+.positionLayout {
+	position: relative;
+}
+.positionLayout .r {
+	position: absolute;
+	width: 200px;
+	right: 0;
+	top: 0;
+}
+.positionLayout .l {
+	width: calc(100% - 200px);
+}
+.FlexLayout {
+	display: flex;
+}
+.FlexLayout .l {
+	width: 200px;
+}
+.FlexLayout .r {
+	flex: 1;
+}
+
+
+
+
+
+.floatThree .l {
+	float: left;
+	width: 150px;
+}
+.floatThree .r {
+	float: right;
+	width: 150px;
+}
+.positionThree {
+	position: relative;
+}
+.positionThree .r {
+	position: absolute;
+	width: 150px;
+	right: 0;
+	top: 0;
+}
+.positionThree .c {
+	position: absolute;
+	width: 150px;
+	right: 150px;
+	top: 0;
+}
+.FlexThree {
+	display: flex;
+}
+.FlexThree .r, .FlexThree .c {
+	width: 150px;
+}
+.FlexThree .l {
+	flex: 1
+}

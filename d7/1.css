@@ -1,0 +1,22 @@
+* {box-sizing:border-box;}
+html,body {margin:0;padding:0;}
+.percent,.twoLayout,.threeLayout {border:2px dashed #548B54;padding-bottom:20px;}
+h2 {border-left:15px solid #48D1CC;border-bottom:2px solid #ccc;}
+.l,.r,.c {height:50px;}
+.l {background-color:#87CEFF}
+.r {background-color:#7AC5CD}
+.c {background-color:#27408B}
+.floatPercent .l,.floatThree .l,.floatLayout .l {float:left;}
+.floatPercent .l,.positionPercent .l {width:30%;}
+.positionPercent,.positionThree,.positionLayout {position:relative;}
+.positionPercent .l,.positionThree .c,.positionThree .r,.positionLayout .r {position:absolute;}
+.FlexPercent,.FlexLayout,.FlexThree {display:flex;}
+.FlexPercent .l {flex:0 0 30%;}
+.FlexPercent .r {flex:0 0 70%;}
+.floatLayout .l,.positionLayout .r,.FlexLayout .l {width:200px;}
+.positionLayout .r,.positionThree .r {right:0;top:0;}
+.positionLayout .l {width:calc(100% - 200px);}
+.FlexLayout .r,.FlexThree .l {flex:1;}
+.floatThree .l,.floatThree .r,.positionThree .r,.positionThree .c,.FlexThree .r,.FlexThree .c {width:150p;}
+.floatThree .r {float:right;}
+.positionThree .c {right:150px;top:0;}
