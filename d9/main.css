@@ -1,0 +1,436 @@
+* {box-sizing: border-box;font-family:'SegoeWP';}
+html,body,h3,h4,header,content,button,div,ul,li,p {
+	margin: 0;
+	padding: 0;
+}
+
+
+header {
+	width: 100%;
+	/*height: 150%;*/
+	padding: 15% 20%;
+	background-image: url(img/headerBack.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	box-shadow: 9999px 9999px rgba(20,20,20,.6) inset;
+}
+header {
+	text-align: center;
+	font-weight: 200;
+	color: #fff;
+}
+header p.title {
+	font-size: 62px;
+}
+header p.content {
+	padding: 12% 10%;
+	font-size: 20px;
+	opacity: .7
+}
+header .form {
+	padding: 6% 0;
+	border: 1px solid #5e594e;
+	border-width: 2px 0;
+	letter-spacing: 2px
+}
+header .form p.account {
+	margin-bottom: 15px;
+	font-size: 18px;
+}
+header .form p.info {
+	opacity: .3;
+}
+header .form form {
+	display: flex;
+	justify-content: space-between;
+	padding: 45px 0;
+}
+header .form form input {
+	padding: 18px;
+	border: 1px solid #55534e;
+	outline: none;
+	background-color: transparent;
+	color: #fff
+}
+header .form form input.username, header .form form input.password {
+	width: 37%;
+}
+header .form form input.submit {
+	width: 17%;
+	background-color: #fff;
+	color: #000
+}
+header .form form input::placeholder {
+	color: #fff
+}
+header .form form input.password::placeholder {
+	opacity: .3;
+}
+
+
+
+
+
+.feature {
+	width: 100%;
+	padding: 10% 20% 5%;
+	background-color: #fff
+}
+.feature div.title {
+	text-align: center;
+}
+.feature .title p {
+	margin-bottom: 3%;
+	font-size: 20px;
+	font-weight: bolder;
+}
+.feature .title p.info {
+	font-size: 42px;
+}
+.feature content {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 10% 0 0 0;
+}
+.feature content .box {
+	width: 50%;
+	padding: 0 5% 10% 0;
+}
+.feature content .box img {
+	width: 40px;
+	float: left;
+	margin: 0 20px;
+}
+.feature content .box .follow {
+	overflow: hidden;
+}
+.feature content .box .follow .subtitle {
+	margin-bottom: 10px;
+	font-size: 20px;
+	font-weight: bolder;
+}
+.feature content .box .follow .msg {
+	opacity: .7;
+}
+
+.action {
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	/*height: 150%;*/
+	padding: 10% 20%;
+	background-image: url(img/actionBack.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	box-shadow: 9999px 9999px rgba(20,20,20,.6) inset;
+}
+.action .left {
+	width: 80%;
+	padding: 5% 15% 5% 0;
+	color: #fff
+}
+.action .left .text {
+	padding:0 33% 10% 0;
+}
+.action .left .text .subtitle{
+	font-size: 42px;
+	margin-bottom: 3%
+}
+.action .left .text .msg{
+	font-size: 18px;
+	opacity: .7;
+}
+.action .left .btnGroup button {
+	margin-right: 10px;
+	width: 45%;
+	padding: 10px 6px;
+	border: 1px solid #fff;
+	outline: none;
+	background-color: #fff;
+	letter-spacing: 2px;
+	color: #000;
+}
+.action .left .btnGroup button:hover {
+	cursor: pointer;
+}
+.action .left .btnGroup button.try {
+	float: right;
+	border-color: #72786f;
+	background-color: transparent;
+	color: #fff
+}
+.action .right {
+	position: absolute;
+	top: 50%;
+	right: -35%;
+	margin-top: -25%;
+	width: 70%;
+	padding: 5%;
+	border: 1px solid #a3a59c;
+	border-radius: 10%;
+}
+.action .right i {
+	position: absolute;
+	top: 50%;
+	margin-top: -5px;
+	left: 4%;
+	display: block;
+	width: 10px;
+	height: 10px;
+	border: 1px solid #a3a59c;
+	border-radius: 50%;
+}
+.action .right .project {
+	padding: 5%;	
+	background-color: #fff
+}
+
+.action .right .project h3,.action .right .project .info {text-align: center;}
+.action .right .project h3 {
+	padding: 10px 0;
+}
+.action .right .project .info {
+	opacity: .6;
+}
+.action .right .project .items {
+	display: flex;
+	justify-content: space-between;
+	padding: 5% 0;
+}
+.action .right .project .items .item {
+	width: 22%;
+}
+.action .right .project .items .item img{
+	display: block;
+	width: 100%;
+}
+.action .right .project .items .item .down p{
+	font-size: 14px;
+	opacity: .7
+}
+.product {
+	padding: 5% 20%;
+	text-align: center;
+}
+.product p.title {
+	padding: 7% 0;
+	font-size: 42px;
+}
+.product .infos {
+	display: flex;
+	justify-content: space-around;
+}
+.product .infos .info {
+	padding: 5%;
+}
+.product .infos .info img {
+	margin-bottom: 20px;
+}
+.product .infos .info p {
+	opacity: .7
+}
+.emm {
+	padding: 10% 20%
+}
+.emm img {
+	width: 45%;
+}
+.emm .learn img {
+	float: left;
+}
+.emm .item {
+	padding: 5% 0;
+}
+.emm .item .content {
+	padding: 5%;
+	overflow: hidden;
+}
+.emm .item .content .subtitle {
+	font-size: 22px;
+	margin-bottom: 5%;
+}
+.emm .item .content .msg {
+	opacity: .7
+}
+.emm .item:after, .contact:after {
+	content: " ";
+	display: block;
+	opacity: 0;
+	height: 0;
+	clear: both;
+}
+.emm .choose img {
+	float: right;
+}
+
+.team {
+	width: 100%;
+	padding: 10% 20% 5% ;
+	border: 1px solid #ccc;
+	border-width: 1px 0;
+}
+.team h4 {
+	text-align: center;
+	font-size: 42px;
+}
+.team p.info {
+	padding: 8% 0;
+	text-align: center;
+	opacity: .7
+}
+.team .teams {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.team .teams .item {
+	position: relative;
+	width: 40%;
+	padding-bottom: 40%;
+	margin-bottom: 5%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.team .teams .item:hover .mask{
+	opacity: 1
+}
+.team .teams .a1 {
+	background-image: url(img/a1.png);}
+.team .teams .a2 {
+	background-image: url(img/a2.png);}
+.team .teams .a3 {
+	background-image: url(img/a3.png);}
+.team .teams .a4 {
+	background-image: url(img/a4.png);}
+
+.team .teams .item .mask {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(102,102,102,.65);
+	opacity: 0
+}
+.team .teams .item .mask .box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 70%;
+}
+.team .teams .item .mask .box p {
+	text-align: center;
+	color: #fff
+}
+.team .teams .item .mask .box p.subtitle {
+	font-size: 20px;
+}
+.team .teams .item .mask .box p.msg {
+	font-size: 14px;
+	letter-spacing: 2px;
+	opacity: .7
+}
+.team .teams .item .mask .box .social {
+	padding-top: 5%;
+	display: flex;
+	justify-content: space-around;
+}
+.team .teams .item .mask .box .social div {
+	width: 50px;
+	height: 50px;
+	border: 1px solid #fff;
+	border-radius: 50%;
+	background-repeat: no-repeat;
+	transform: scale(.85);
+	background-position: center;
+}
+.team .teams .item .mask .box .social div:hover {
+	cursor: pointer;
+}
+.team .teams .item .mask .box .social div.fc {
+	background-image: url(img/Facebook.png);
+}
+.team .teams .item .mask .box .social div.twitter {
+	background-image: url(img/Twitter.png);
+}
+.team .teams .item .mask .box .social div.ins {
+	background-image: url(img/Instagram.png);
+}
+.contact {
+	padding: 10% 20%;
+}
+.contact .conInfo {
+	float: left;
+	width: 50%;
+	padding: 5%;
+	border: 1px solid #e7e7e7;
+	border-radius: 20px;
+}
+.contact .conInfo p {
+	letter-spacing: 2px;
+	text-align: center;
+	margin-bottom: 10%;
+}
+.contact .conInfo input, .contact .conInfo textarea, .contact .conInfo button {
+	margin-bottom: 10%;
+	width: 100%;
+	padding: 15px;
+	border: 1px solid #d4d3d3;
+	outline: 0;
+}
+.contact .conInfo textarea {
+	resize: none;
+	height: 200px;
+}
+.contact .conInfo button {
+	letter-spacing: 2px;
+	background-color: #141414;
+	color: #fff
+}
+.contact .conInfo input::placeholder, .contact .conInfo textarea::placeholder {
+	color:#a6a6a6 
+}
+.contact .contacts {
+	float: left;
+	width: 50%;
+	padding: 10%;
+}
+.contact .contacts p.subtitle {
+	margin-bottom: 20px;
+	font-size: 42px;
+}
+.contact .contacts p.msg {
+	margin-bottom: 20%;
+	opacity: .4;
+}
+.contact .contacts .item {
+	margin: 20px 0;
+}
+.contact .contacts .item img{
+	float: left;
+	margin: 0 10px;
+}
+.contact .contacts .item p {
+	overflow: hidden;
+}
+footer {
+	display: flex;
+	justify-content: space-between;
+	padding: 10% 15%;
+	background-color: #141414;
+	color: #fff;
+}
+footer .item p {
+	letter-spacing: 1px;
+	margin-bottom: 10%;
+}
+footer .item p:not(:first-child):hover {
+	cursor: pointer;
+	opacity: 1
+}
+footer .item p:not(:first-child){
+	font-size: 14px;
+	opacity: .7
+}
