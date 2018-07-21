@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+    <style>
+        table {border: 1px solid #000;border-collapse:collapse;}
+        table td {border: 1px solid #000}
+    </style>
+</head>
+<body>
+    <div class="hello">
+        <h2>时间问候语</h2>
+        <p id="time"></p>
+    </div>
+    <hr>
+    <div class="clac">
+        <h2>加减乘除</h2>
+        <input id="first-number" type="number" value="0" placeholder="第一个数字">
+        <input id="second-number" type="number" value="0" placeholder="第二个数字">
+        <button id="add-btn">加</button>
+        <button id="minus-btn">减</button>
+        <button id="times-btn">乘</button>
+        <button id="divide-btn">除</button>
+        <p id="result">运算结果</p>
+    </div>
+    <hr>
+    <div class="dec">
+        <h2>十进制转二进制</h2>
+        <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+        <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+        <button id="trans-btn">转化为二进制</button>
+        <p id="dec-result">运算结果</p>
+    </div>
+    <hr>
+    <h2>九九乘法表</h2>
+    <table></table>
+</body>
+</html>
+<script>
+    //time
+    var time = new Date();
+    document.getElementById("time").innerHTML = "现在是" + time.getHours() + "点";
+
+    //clac
+    var fn = document.getElementById("first-number"),
+        sn = document.getElementById("second-number")
+        p = document.getElementById("result");
+    document.getElementById("add-btn").onclick= function(){
+        if(fn.value>=0 && sn.value >=0){
+            p.innerHTML = parseInt(fn.value) + parseInt(sn.value);
+        }else {
+            alert("数值不符合规则");
+        }
+    }
+    document.getElementById("minus-btn").onclick= function(){
+        if(fn.value>=0 && sn.value >=0){
+            p.innerHTML = parseInt(fn.value) - parseInt(sn.value);
+        }else {
+            alert("数值不符合规则");
+        }
+    }
+    document.getElementById("times-btn").onclick= function(){
+        if(fn.value>=0 && sn.value >=0){
+            p.innerHTML = parseInt(fn.value) * parseInt(sn.value);
+        }else {
+            alert("数值不符合规则");
+        }
+    }
+    document.getElementById("divide-btn").onclick= function(){
+        if(fn.value>=0 && sn.value >0){
+            p.innerHTML = parseInt(fn.value) / parseInt(sn.value);
+        }else {
+            alert("数值不符合规则");
+        }
+    }
+
+
+    //dec
+    document.getElementById("trans-btn").onclick = function(){
+        var value = document.getElementById("dec-number").value,
+            nums = document.getElementById("bin-bit").value;
+        if (parseInt(value) >= 0) {
+            var bitvalue = parseInt(value).toString(2);
+            if(bitvalue.length >= parseInt(nums)){
+                document.getElementById("dec-result").innerHTML = bitvalue;
+                console.log("转换二进制长度大于或等于预定长度！")
+            }else {
+                var i = parseInt(nums) - bitvalue.length + 1;
+                var a = new Array(i);
+                document.getElementById("dec-result").innerHTML =a.join('0') + bitvalue;
+            }
+        }else {
+            alert("数据不对");
+        }
+    }
+
+    //game3
+    var i = 1;
+    console.log("3的小游戏:");
+    while (i<=100) {
+        // statement
+        
+        if (!(i%3) || String(i).indexOf(3)!=-1) {
+            console.log("PA");
+        }else {
+            console.log(i);
+        }
+        i++;
+    }
+
+    //九九乘法表
+    // for(var i=1;i<10;i++){
+    //     for(var j=1;j<=i;j++){
+    //         console.log(i + "*" + j + "=" + i*j + " ");
+    //     }
+    //     console.log("<br>");
+    // }
+    document.write('<table>');
+    for(var i =1;i<=9;i++){
+        document.write('<tr>');
+        for(var j=1;j<=i;j++){
+            document.write("<td>"+i+"*"+j+"="+i*j+"</td>");//让其在td标签中显示
+        }
+        document.write("</tr>")
+    }
+    document.write('</table>');
+</script>
