@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>
+    <h1>所有按钮功能在F12-Console里查看</h1>
+    <div>
+        <button onclick="getAllListItem()">返回页面中所有li标签</button>
+    </div>
+    <select>
+        <option>news-top</option>
+        <option>news-normal</option>
+    </select>
+    <div>
+        <button onclick="findAllHtmlSpanInOneSection()">返回所选section下所有span中内容为HTML的span标签</button>
+    </div>
+    <div>
+        <input type="text" placeholder="spanCont" name="" id="spancont">
+        <button onclick="findListItem()">返回所选section下，所有所包含span内容为spanCont的LI标签</button>
+    </div>
+    <div>
+        <button onclick="getActiveLinkContent()">返回所选section下，所有所包含span内容为spanCont的LI标签</button>
+    </div>
+    <hr>
+    <div id="result"></div>
+    <div id="wrapper">
+        <div id="news-top" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some Link1</a></li>
+                    <li><span>JS</span><a class="active" href="">Some Link2</a></li>
+                    <li><span>CSS</span><a href="">Some Link3</a></li>
+                    <li><span>JS</span><a href="">Some Link4</a></li>
+                </ul>
+            </div>
+            <img src="">
+            <p class="">Some Text</p>
+        </div>
+        <div id="news-normal" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a class="active" href="">Some Link1</a></li>
+                    <li><span>HTML</span><a href="">Some Link2</a></li>
+                    <li><span>JS</span><a class="active" href="#">Some Link3</a></li>
+                    <li><span>CSS</span><a href="">Some Link4</a></li>
+                </ul>
+            </div>
+            <img src="">
+            <p class="">Some Text</p>
+        </div>      
+    </div>
+    <script>
+    
+    function getAllListItem() {
+        // 返回页面中所有li标签
+
+        console.log(document.getElementsByTagName("li"));
+        return document.getElementsByTagName("li");
+    }
+
+    function findAllHtmlSpanInOneSection(sectionId) {
+        select = document.querySelector("select").value;
+        // 返回某个section下所有span中内容为HTML的span标签
+        var section = document.getElementById(select),
+            secspan = section.getElementsByTagName("span"),
+            spanlist = [];
+
+        for(var i=0;i<secspan.length;i++){
+            if (secspan[i].innerHTML == "HTML") {
+                spanlist.push(secspan[i]);
+            }
+        }
+        console.log(spanlist)
+        return spanlist;
+
+    }
+
+    function findListItem(sectionId, spanCont) {
+        // 返回某个section下，所有所包含span内容为spanCont的LI标签
+        select = document.querySelector("select").value;
+        span = document.querySelector("#spancont").value;
+        var section = document.getElementById(select),
+            secspan = section.getElementsByTagName("span"),
+            lilist = [];
+
+        for(var i=0;i<secspan.length;i++){
+            if (secspan[i].innerHTML == span) {
+                lilist.push(secspan[i].parentNode)
+                // alert(secspan[i].parentNode());
+            }
+        }
+        console.log(lilist)
+        return lilist;
+    }
+
+    function getActiveLinkContent(sectionId) {
+        // 返回某个section下，class为active的链接中包含的文字内容
+        select = document.querySelector("select").value;
+        var section = document.getElementById(select),
+            seca = section.querySelectorAll("a.active"),
+            atextlist = [];
+
+        for(var i=0;i<seca.length;i++){
+            // console.log(seca[i].innerText);
+            // atextlist.i = seca[i].innerText;
+                atextlist.push({selector:seca[i],text:seca[i].innerText})
+        }
+        // console.log(atextlist[0].text)
+        console.log(atextlist)
+        return atextlist;
+    }
+
+    </script>
+</body>
+</html>
