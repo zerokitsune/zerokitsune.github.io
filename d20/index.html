@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		#img {width: 480px;height: 480px;background-image: url(erik.jpg);}
+	</style>
+</head>
+<body>
+	<h1>button点击显示文本，回车显示，esc清空（F12-console显示结果）</h1>
+	<input id="name" type="text">    
+	<button id="submit-btn">Submit</button>
+	<span>此Submit快捷键为“Alt+a”</span>
+	<hr>
+	<div>
+		<h1>控制显示、隐藏</h1>
+		<label>
+	        <input id="school" name="status" type="radio">
+	        School
+	    </label>
+	    <label>
+	        <input id="company" name="status" type="radio">
+	        Company
+	    </label>
+
+	    <select id="school-select">        
+	        <option>北京邮电大学</option>
+	        <option>黑龙江大学</option>
+	        <option>华中科技大学</option>
+	    </select>
+
+	    <select id="company-select">        
+	        <option>百度</option>
+	        <option>爱奇艺</option>        
+	    </select>
+	</div>
+	<hr>
+	<div>
+		<h1>li和p样式交换</h1>
+		<ul class="palette">
+	        <li style="background-color:crimson"></li>
+	        <li style="background-color:bisque"></li>
+	        <li style="background-color:blueviolet"></li>
+	        <li style="background-color:coral"></li>
+	        <li style="background-color:chartreuse"></li>
+	        <li style="background-color:darkolivegreen"></li>
+	        <li style="background-color:cyan"></li>
+	        <li style="background-color:#194738"></li>        
+	    </ul>
+
+	    <p class="color-picker">p的文本</p>
+	</div>
+	<hr>
+
+　　<div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+	<button id="fade-btn">淡出</button>
+	<hr>
+	<div id="img"></div>
+</body>
+</html>
+<script>
+	//gif
+	var img = document.querySelector("#img");
+	var i = 0,flag = true;
+	(function(){setInterval(function(){
+		if(flag){
+			i -= 480;
+			img.style.backgroundPositionY = i + "px";
+			if(i==-7680) flag = false
+		}else {
+			i += 480;
+			img.style.backgroundPositionY = i + "px";
+			if (i==0) flag = true
+		}
+		// console.log(getComputedStyle(img).getPropertyValue("background-position-y"))
+		
+	},100)})()
+	//fade
+	var fadeBtn = document.querySelector("button#fade-btn");
+	function fadeOut(){
+		var obj = document.querySelector("#fade-obj");
+		var opacity = getComputedStyle(obj).getPropertyValue("opacity");
+		if(opacity>0) {
+			fadeBtn.disabled = true;
+			opacity = parseInt((opacity-0.1)*10)/10;
+			obj.style.opacity = opacity;
+			setTimeout("fadeOut()",500);
+		}else{
+			fadeBtn.innerText = fadeBtn.value ="淡入";
+			fadeBtn.disabled = false;
+		}
+	}
+	function fadeIn(){
+		var obj = document.querySelector("#fade-obj");
+		var opacity = getComputedStyle(obj).getPropertyValue("opacity");
+		if(opacity<1) {
+			fadeBtn.disabled = true;
+			opacity = parseFloat(opacity) + 0.1;
+			obj.style.opacity = opacity;
+			setTimeout("fadeIn()",500);
+		}else{
+			fadeBtn.innerText = fadeBtn.value ="淡出";
+			fadeBtn.disabled = false;
+		}
+	}
+	function fade(){
+		opacity = document.querySelector("#fade-obj").style.opacity;
+		if(parseInt(opacity)!=0){
+			 fadeOut()
+
+		}else {
+			fadeIn()
+		}
+		
+	}
+	fadeBtn.addEventListener("click",fade);
+	//buuton,enter,esc
+	document.querySelector("button#submit-btn").accessKey = "a";
+	document.querySelector("button#submit-btn").addEventListener("click", function(){
+		console.log(document.querySelector("input#name").value);
+	})
+	document.querySelector("input#name").addEventListener("keydown", function(e){
+		// console.log(e.which)
+		if (e.which == 13) {
+			console.log(this.value);
+		}else if (e.which == 27) {
+			document.querySelector("input#name").value = "";
+		}
+	})
+
+
+	//hidden & showing
+	function clickChange(e){
+		console.log(e.target.id)
+		if(e.target.checked){
+			if(e.target.id == "school"){
+				document.getElementById("company-select").style.cssText += "display:none;"
+				document.getElementById("school-select").style.cssText += "display:inline;"
+			}else if (e.target.id == "company") {
+				document.getElementById("company-select").style.cssText += "display:inline;"
+				document.getElementById("school-select").style.cssText += "display:none;"
+			}
+		}
+	}
+
+
+	document.querySelector("input#school").addEventListener("click", clickChange)
+	document.querySelector("input#company").addEventListener("click", clickChange)
+
+
+
+	//li.style & p.style
+	var list = document.querySelectorAll("li");
+	document.querySelector("ul").onclick = function(e){
+		// console.log(window.getComputedStyle(e.target).getPropertyValue("color"));
+		var c = e.target.style.backgroundColor;
+		var p = document.getElementsByClassName("color-picker")[0];
+		p.innerHTML = c;
+        p.style.backgroundColor = c;
+        e.target.style.backgroundColor = p.style.color;
+        // e.target.style.color = window.getComputedStyle(e.target).getPropertyValue("color")
+	}
+    // for (var i = i = 0, len = list.length; i < len; i++) {
+    //     list[i].onclick = function(e) {
+    //         var t = e.target;
+    //         console.log(t)
+    //         var c = t.style.backgroundColor;
+    //         var p = document.getElementsByClassName("color-picker")[0]
+    //         p.innerHTML = c;
+    //         p.style.backgroundColor = c;
+
+    //     }
+    // }
+</script>
