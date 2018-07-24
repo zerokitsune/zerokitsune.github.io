@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>d22-24</title>
+</head>
+<body>
+	<div id="task1">
+		<div>
+		    <label>Number A:
+		    	<input id="radio-a" type="radio" name="math-obj" value="a" checked="checked">
+		    </label>
+		    <input id="num-a" type="text">
+
+		    <label>Number B:
+		    	<input id="radio-b" type="radio" name="math-obj" value="b">
+		    </label>
+		    <input id="num-b" type="text">
+		</div>
+		<div>
+		    <button>判断当前选中的输入框输入内容是否为数字</button>
+		    <button>把 A 四舍五入为 B 个小数位数的数字</button>
+		    <button>当前选中数字的绝对值</button>
+		    <button>对当前选中的数字进行上舍入</button>
+		    <button>对当前选中的数字进行下舍入</button>
+		    <button>把当前选中的数字四舍五入为最接近的整数</button>
+		    <button>返回 A 和 B 中的最高值</button>
+		    <button>返回 A 和 B 中的最低值</button>        
+		</div>
+		<p id="result"></p>
+	</div>
+	<hr>
+	<div id="task2">
+		<div>
+		    <label>String A:
+		        <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+		    </label>
+		    <textarea id="str-a"></textarea>
+		    <label>String B:
+		        <input id="radio-b" type="radio" name="str-obj" value="b">
+		    </label>
+		    <textarea id="str-b"></textarea>        
+		    <label>Num A：<input id="num-a" type="number" value="0"></label>
+		    <label>Num B：<input id="num-b" type="number" value="1"></label>
+		</div>
+		<div>
+		    <button>获取当前选中输入的内容长度</button>
+		    <button>当前选中输入中的第3个字符</button>
+		    <button>把两个输入框的文字连接在一起输出（concat）</button>
+		    <button>输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+		    <button>输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+		    <button>使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+		    <button>当前选中输入框的行数</button>
+		    <button>使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+		    <button>把所选输入框中的内容全部转为大写</button>
+		    <button>把所选输入框中的内容全部转为小写</button>
+		    <button>把所选输入框中内容的半角空格全部去除</button>
+		    <button>把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+		</div>
+		<p id="result"></p>
+	</div>
+	<hr>
+	<div id="task3">
+		<input id="queue-input" type="text">
+		<p id="queue-cont">队列内容：<span id="result">apple-&gt;pear</span></p>    
+		<button id="in-btn">入队</button>
+		<button id="out-btn">出队</button>
+		<button id="font-btn">打印队头元素内容</button>
+		<button id="empty-btn">判断队列是否为空</button>
+	</div>
+	<hr>
+	<div id="task4">
+		<input id="stack-input" type="text">
+		<p id="stack-cont">栈内容：<span id="result">apple-&gt;pear</span></p>    
+		<button id="push-btn">进栈</button>
+		<button id="pop-btn">退栈</button>
+		<button id="font-btn">打印栈顶元素内容</button>
+		<button id="empty-btn">判断栈是否为空</button>
+
+	</div>
+</body>
+</html>
+<script>
+	//数组转对象
+	var menuArr = [
+	    [1, "Area1", -1],
+	    [2, "Area2", -1],
+	    [3, "Area1-1", 1],
+	    [4, "Area1-2", 1],
+	    [5, "Area2-1", 2],
+	    [6, "Area2-2", 2],
+	    [7, "Area1-2-3", 4],
+	    [8, "Area2-2-1", 6],
+	];
+	console.log("原有数组：", menuArr)
+	console.log("转为对象：没想出来呢。2018年7月24日20:18:48")
+	//没想出来呢2018年7月24日20:18:48
+	//对象转为数组
+	var scoreObject = {
+	    "Tony": {
+	        "Math": 95,
+	        "English": 79,
+	        "Music": 68
+	    }, 
+	    "Simon": {
+	        "Math": 100,
+	        "English": 95,
+	        "Music": 98
+	    }, 
+	    "Annie": {
+	        "Math": 54,
+	        "English": 65,
+	        "Music": 88
+	    }
+	}
+	var score = []	
+	for(var i in scoreObject){
+	    var item = [];
+	    item.push(i);
+	    for(var j in scoreObject[i]){
+	        item.push(scoreObject[i][j]);
+	    }
+	    score.push(item);
+	}
+	console.log("\n原有对象：%o",scoreObject )
+	console.log("转为数组：", score)
+	//-------------------------------------------------------------------
+	//分别按从大到小以及从小到大进行排序后在console中输出
+	var arr = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+	console.log("\n原数组：" + arr)
+	arr.sort((a,b) => a-b)
+	console.log("从小到大排序：" + arr)
+	//分别按字母顺序a-z及z-a进行排序，在console中输出
+	var arr1 = ['apple', 'dog','cat', 'car', 'zoo', 'orange', 'airplane'];
+	console.log("\n原数组：" + arr1)
+	arr1.sort((a,b) => b-a)
+	console.log("从a-z排序：" + arr1)
+	//按照每个元素中第二个数从大到小的顺序进行排序输出
+	var arr2 = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+	console.log("\n原排序" + arr2.join("|"))
+	arr2.sort((a,b) => b[1]-a[1])
+	console.log("按照每个元素中第二个数从大到小的顺序进行排序输出" + arr2.join("|"))
+	//分别按元素对象的value值从小到大进行排序后输出
+	var arr3 = [
+	    {
+	        id: 1,
+	        name: 'candy',
+	        value: 40
+	    }, {
+	        id: 2,
+	        name: 'Simon',
+	        value: 50
+	    }, {
+	        id: 3,
+	        name: 'Tony',
+	        value: 45
+	    }, {
+	        id: 4,
+	        name: 'Annie',
+	        value: 60
+	    }
+	];
+	
+	console.log("\n原value值排序：")
+	for(i in arr3) console.log(arr3[i].value)
+	arr3.sort((a,b) => a.value - b.value)
+	console.log("value值从小到大排序：")
+	for(i in arr3) console.log(arr3[i].value)
+	//--------------------------------------------------------------------------------
+	var stack = ["apple", "pear"];
+	var task4 = document.querySelector("#task4"),
+		btns4 = task4.querySelectorAll("button"),
+		result4 = task4.querySelector("span#result"),
+		value4 = task4.querySelector("#stack-input"),
+		stacktop = stack.length-1;
+	//进栈instack
+	function instack(){
+		var value = value4.value;
+		if(value.replace(/\s/g,"")!==""){
+			stack.push(value);
+			result4.innerText = stack.join("->")
+		}
+	}
+	//退栈
+	function outstack(){
+		stack.pop();
+		result4.innerText = stack.join("->")
+	}
+	//打印栈顶元素内容
+	function topstack(){
+		result4.innerText = stack[stacktop];
+	}
+	//判断栈是否为空
+	function emptystack(){
+		stack.length==0 ? result4.innerText = "当前栈为空" : result4.innerText = "当前栈没空"
+	}
+	btns4[0].addEventListener("click",instack)
+	btns4[1].addEventListener("click",outstack)
+	btns4[2].addEventListener("click",topstack)
+	btns4[3].addEventListener("click",emptystack)
+	//------------------------------------------------------------------------------------
+	var queue = ["apple", "pear"];
+	var task3 = document.querySelector("#task3"),
+		btns3 = task3.querySelectorAll("button"),
+		result3 = task3.querySelector("span#result"),
+		value3 = task3.querySelector("#queue-input");
+	//入队enqueue
+	function enqueue(){
+		var value = value3.value;
+		if(value.replace(/\s/g,"")!==""){
+			queue.reverse();
+			queue.push(value)
+			// console.log(queue)
+			result3.innerText = queue.reverse().join("->")
+		}
+			
+	}
+	//出列dequeue
+	function dequeue(){
+		queue.reverse();
+		queue.pop();
+		result3.innerText = queue.reverse().join("->");
+	}
+	//打印队头元素内容
+	function header(){
+		result3.innerText = queue.reverse()[0];
+		queue.reverse()
+	}
+	//判断队列是否为空
+	function empty(){
+		queue.length==0 ? result3.innerText = "当前队列为空" : result3.innerText = "当前队列没空"
+	}
+	btns3[0].addEventListener("click",enqueue)
+	btns3[1].addEventListener("click",dequeue)
+	btns3[2].addEventListener("click",header)
+	btns3[3].addEventListener("click",empty)
+	//---------------------------------------------------------------------------------------
+	var tree = {
+	    "id": 0,
+	    "name": "root",
+	    "left": {
+	        "id": 1,
+	        "name": "Simon",
+	        "left": {
+	            "id": 3,
+	            "name": "Carl",
+	            "left": {
+	                "id": 7,
+	                "name": "Lee",
+	                "left": {
+	                    "id": 11,
+	                    "name": "Fate"
+	                }
+	            },
+	            "right": {
+	                "id": 8,
+	                "name": "Annie",
+	                "left": {
+	                    "id": 12,
+	                    "name": "Saber"
+	                }
+	            }
+	        },
+	        "right": {
+	            "id": 4,
+	            "name": "Tony",
+	            "left": {
+	                "id": 9,
+	                "name": "Candy"
+	            }
+	        }
+	    },
+	    "right": {
+	        "id": 2,
+	        "name": "right",
+	        "left": {
+	            "id": 5,
+	            "name": "Carl",
+	        },
+	        "right": {
+	            "id": 6,
+	            "name": "Carl",
+	            "right": {
+	                "id": 10,
+	                "name": "Kai"
+	            }        
+	        }
+	    }
+	}
+	//根据name找id
+	function findIdByName(name) {
+		function preOrder(node){
+			if(node){
+				if(node.name==name){
+					console.log(node.id)
+				}else {
+					preOrder(node.left);
+					preOrder(node.right)
+				}
+			}
+		}
+		preOrder(tree)
+	}
+	console.log("\nCarl的ID：")
+	findIdByName("Carl");
+	//中序遍历
+	console.log("\n中序遍历：")
+	function preOrder(node){
+		if(node){
+			preOrder(node.left);
+			console.log(node.id, node.name);
+			preOrder(node.right)
+		}
+	}
+	preOrder(tree)
+	//-------------------------------------------------------------------------------------
+	//去掉字符串str中，连续重复的地方
+	function removeRepetition(str) {
+	    var mask = str[0],
+	    	result = "";
+	    for(var i=1;i<str.length+1;i++){
+	    	if(str[i] == mask){
+	    		str[i].replace(mask,"")
+	    	}else {
+	    		result += mask;
+	    		mask = str[i]
+	    	}
+	    }
+	    return result;
+	}
+	// removeRepetition("aabddbaacaad")
+	console.log("\n去掉字符串str中，连续重复的地方：")
+	console.log(removeRepetition("aaa")); // ->a
+	console.log(removeRepetition("abbba")); // ->aba
+	console.log(removeRepetition("aabbaabb")); // ->abab
+	console.log(removeRepetition("")); // ->
+	console.log(removeRepetition("abc")); // ->abc
+	//-----------------------------------------------------------------------------------
+	//去除首尾空格
+	function diyTrim(str) {
+	    var result = "";
+	    var n=0,m=0;
+	    //找到第一个非空格字符位置
+	    for(var i=0;i<str.length;i++){
+	    	if(str[i]!=" " && str[i]!="　"){
+	    		n=i;
+	    		break;
+	    	}
+	    }
+	    //找到最后一个非空格字符位置
+	    for(var i=str.length-1;i>=0;i--){
+	    	if(str[i]!=" " && str[i]!="　"){
+	    		m=i;
+	    		break;
+	    	}
+	    }
+	    return str.slice(n,m-str.length+1);
+	}
+	console.log("\n去除首尾空格：")
+	console.log(diyTrim(' a f b    ')); // ->a f b
+	console.log(diyTrim('    ffdaf    ')); // ->ffdaf
+	console.log(diyTrim('1    ')); // ->1
+	console.log(diyTrim('　　f')); // ->f
+	console.log(diyTrim('  　  a f b 　　 ')); // ->a f b
+	console.log(diyTrim(' ')); // ->
+	console.log(diyTrim('　')); // ->
+	console.log(diyTrim('')); // ->
+
+	//-------------------------------------------------------------------------------
+	var task2 = document.querySelector("#task2");
+		radios2 = task2.querySelectorAll("input[type='radio']"),
+		textarea = task2.querySelectorAll("textarea"),
+		nums = task2.querySelectorAll("input[type='number']"),
+		p2 = task2.querySelector("p#result"),
+		btns2 = task2.querySelectorAll("button");
+
+	function checked2 (){
+		var flag = true
+		if (radios2[1].checked) flag = false
+		return flag
+	}
+	//获取当前选中输入的内容长度
+	function length(){
+		if(checked2()){
+			p2.innerText = "当前选中长度为：" + textarea[0].value.length;
+		}else {
+			p2.innerText = "当前选中长度为：" + textarea[1].value.length;
+		}
+	}
+	//当前选中输入中的第3个字符
+	function index3(){
+		if(checked2()){
+			if(textarea[0].value.length>=3){
+				p2.innerText = "当前选中第3个字符为：" + textarea[0].value[2];
+			}else {
+				p2.innerText = "字符长度不够";
+			}
+		}else {
+			if(textarea[1].value.length>=3){
+				p2.innerText = "当前选中第3个字符为：" + textarea[1].value[2];
+			}else {
+				p2.innerText = "字符长度不够";
+			}
+		}
+	}
+	//把两个输入框的文字连接在一起输出（concat)
+	function con(){
+		p2.innerText = textarea[0].value.concat(textarea[1].value)
+	}
+	//输入B中的内容，在输入A的内容中第一次出现的位置
+	function binA(){
+		p2.innerText = textarea[0].value.indexOf(textarea[1].value)+1
+	}
+	//输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）
+	function alastinB(){
+		p2.innerText = textarea[1].value.lastIndexOf(textarea[0].value)+1
+	}
+	//使用slice获取选中输入框内容的部分内容，参数为num-a及num-b
+	function sli(){
+		var a = Number(nums[0].value),
+			b = Number(nums[1].value);
+		if(checked2()){
+			p2.innerText = textarea[0].value.slice(a, b)
+		}else {
+			p2.innerText = textarea[1].value.slice(a, b)
+		}
+	}
+	//当前选中输入框的行数
+	function rows(){
+		if(checked2()){
+			p2.innerText = textarea[0].value.split(/\r?\n|\r/).length ;
+		}else {
+			p2.innerText = textarea[1].value.split(/\r?\n|\r/).length ;
+		}
+	}
+	//使用substr获取选中输入框内容的子字符串，参数为num-a及num-b
+	function sub(){
+		var a = Number(nums[0].value),
+			b = Number(nums[1].value);
+		if(checked2()){
+			p2.innerText = textarea[0].value.substr(a,b);
+		}else {
+			p2.innerText = textarea[1].value.substr(a,b);
+		}
+	}
+	//把所选输入框中的内容全部转为大写
+	function toUpper(){
+		if (checked2()) {
+			p2.innerText = textarea[0].value = textarea[0].value.toUpperCase();
+		}else {
+			p2.innerText = textarea[1].value = textarea[1].value.toUpperCase();
+		}
+	}
+	//把所选输入框中的内容全部转为小写
+	function toLower(){
+		if (checked2()) {
+			p2.innerText = textarea[0].value =textarea[0].value.toLowerCase();
+		}else {
+			p2.innerText = textarea[1].value =textarea[1].value.toLowerCase();
+		}
+	}
+	//把所选输入框中内容的半角空格全部去除
+	function delWhite(){
+		if (checked2()) {
+			p2.innerText = textarea[0].value.replace(/\s/g,"");
+		}else {
+			p2.innerText = textarea[1].value.replace(/\s/g,"");
+		}
+	}
+	//把所选输入框中内容的a全部替换成另外一个输入框中的内容
+	function change(){
+		if (checked2()) {
+			p2.innerText = textarea[0].value.replace(/a/g,textarea[1].value);
+		}else {
+			p2.innerText = textarea[1].value.replace(/a/g,textarea[0].value);
+		}
+	}
+	btns2[0].addEventListener("click",length)
+	btns2[1].addEventListener("click",index3)
+	btns2[2].addEventListener("click",con)
+	btns2[3].addEventListener("click",binA)
+	btns2[4].addEventListener("click",alastinB)
+	btns2[5].addEventListener("click",sli)
+	btns2[6].addEventListener("click",rows)
+	btns2[7].addEventListener("click",sub)
+	btns2[8].addEventListener("click",toUpper)
+	btns2[9].addEventListener("click",toLower)
+	btns2[10].addEventListener("click",delWhite)
+	btns2[11].addEventListener("click",change)
+
+	//------------------------------------------------------------------------------------------------
+	var task1 = document.querySelector("#task1"),
+		radios = task1.querySelectorAll("input[type='radio']"),
+		num_a = task1.querySelector("#num-a"),
+		num_b = task1.querySelector("#num-b"),
+		p = task1.querySelector("p#result"),
+		btns = task1.querySelectorAll("button");
+	//判断是否为可计算数字(8,10,16进制)
+	var fun = new Object();
+	fun.toFix = function(){
+		if(aisNum() && bisNum()){
+				p.innerText = Number(num_a.value).toFixed(Number(num_b.value));
+			}else {
+				p.innerText = "数值错误";
+			}
+	}
+	function checked(){
+		var flag = true
+		if (radios[1].checked) flag = false
+		return flag
+	}
+	function isNum(){
+		if(checked()){
+			if(aisNum()){
+				p.innerText = "A为可计算数值";
+			}else {
+				p.innerText = "A为不可计算数值";
+			}
+		}else {
+			if(bisNum()){
+				p.innerText = "B为可计算数值";
+			}else {
+				p.innerText = "B为不可计算数值";
+			}
+		}
+	}
+	function aisNum(){
+		var a = num_a.value;
+			if(!(a == "" || a.indexOf(" ")>=0 || isNaN(Number(a)))){
+				return true;
+			}else {
+				return false
+			}
+	}
+	function bisNum(){
+		var b = num_b.value;
+			if(!(b == "" || b.indexOf(" ")>=0 || isNaN(Number(b)))){
+				return true;
+			}else {
+				return false
+			}
+	}
+	//四舍五入固定小数位数
+	// function toFix(){
+	// 	if(aisNum() && bisNum()){
+	// 			p.innerText = Number(num_a.value).toFixed(Number(num_b.value));
+	// 		}else {
+	// 			p.innerText = "数值错误";
+	// 		}
+	// }
+	//绝对值
+	function abs(){
+		if(checked()){
+			if(aisNum()) p.innerText = Math.abs(Number(num_a.value))
+		}else {
+			if(bisNum()) p.innerText = Math.abs(Number(num_b.value))
+		}
+	}
+	//上舍入
+	function ceil(){
+		if(checked()){
+			if(aisNum()) p.innerText = Math.ceil(Number(num_a.value))
+		}else {
+			if(bisNum()) p.innerText = Math.ceil(Number(num_b.value))
+		}
+	}
+	//下舍入
+	function floor(){
+		if(checked()){
+			if(aisNum()) p.innerText = Math.floor(Number(num_a.value))
+		}else {
+			if(bisNum()) p.innerText = Math.floor(Number(num_b.value))
+		}
+	}
+	//就近取整
+	function round(){
+		if(checked()){
+			if(aisNum()) p.innerText = Math.round(Number(num_a.value))
+		}else {
+			if(bisNum()) p.innerText = Math.round(Number(num_b.value))
+		}
+	}
+	//max
+	function max(){
+		if(aisNum() && bisNum()){
+			p.innerText = Math.max(Number(num_a.value),Number(num_b.value))
+		}else {
+			p.innerText = "数值不对";
+		}
+	}
+	//min
+	function min(){
+		if(aisNum() && bisNum()){
+			p.innerText = Math.min(Number(num_a.value),Number(num_b.value))
+		}else {
+			p.innerText = "数值不对";
+		}
+	}
+	btns[0].addEventListener("click", isNum)
+	btns[1].addEventListener("click",fun.toFix)
+	btns[2].addEventListener("click",abs)
+	btns[3].addEventListener("click",ceil)
+	btns[4].addEventListener("click",floor)
+	btns[5].addEventListener("click",round)
+	btns[6].addEventListener("click",max)
+	btns[7].addEventListener("click",min)
+</script>
