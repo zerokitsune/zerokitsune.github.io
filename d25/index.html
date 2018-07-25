@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>第二十五天到第二十七天 倒数开始 滴答滴 滴答滴</title>
+</head>
+<body>
+	<div id="date">
+	</div>
+	<hr>
+	<div class="task">
+		<span>年</span>
+		<select id="year-select">
+		    <option value="2000" id="hi">2000</option>
+		    <option value="2001">2001</option>
+		    <option value="2002">2002</option>
+		    <option value="2032">2032</option>
+		</select>
+		<span>月</span>
+		<select id="month-select">
+		    <option value="1">1</option>
+		    <option value="2">2</option>
+		    <option value="12">12</option>
+		</select>
+		<span>日</span>
+		<select id="day-select">
+		    <option value="1">1</option>
+		    <option value="2">2</option>
+		    ……
+		    <option value="31">31</option>
+		</select>
+		<span>时</span>
+		<select id="hour-select">
+		    <option value="0">00</option>
+		    <option value="1">01</option>        
+		    ……
+		    <option value="23">23</option>
+		</select>
+		<span>分</span>
+		<select id="minite-select">
+		    <option value="0">0</option>
+		    <option value="1">1</option>
+		    ……
+		    <option>59</option>
+		</select>
+		<span>秒</span>
+		<select id="second-select">
+		    <option value="0">0</option>
+		    <option value="1">1</option>
+		    ……
+		    <option>59</option>
+		</select>
+
+		<p id="result-wrapper">现在距离 <span id="selecttime"></span>,<span id="dvalue"></span></p>
+	</div>
+</body>
+</html>
+<script>
+	//select timeout
+	//select初始化
+	var selectlists = document.querySelectorAll("select"),
+		selectlength = selectlists.length,
+		selectresult = document.querySelector("span#selecttime"),
+		dvalue = document.querySelector("span#dvalue");
+	for(var i=0;i<selectlength;i++){
+		var goal = selectlists[i],
+			start = Number(goal.firstElementChild.innerText),//获取当前select第一个option的文本内容
+			end = Number(goal.lastElementChild.innerText);//最后一个
+
+		addOption(goal,start,end)
+
+	}
+	//批量添加option,goal为目标select,start为第一个option的值,end为最后一个值
+	function addOption(goal,start,end){
+		goal.length = 0;//将目标select清空
+		for(var i=start;i<=end;i++){
+			var option = document.createElement("option");//创建option节点
+			option.text = i;//option文本内容
+			option.value = i;//option值内容
+			goal.appendChild(option)//将option节点添加至目标select
+		}
+	}
+	//判断闰年
+	var leapflag = true
+	function leapYear(year){
+		if((year%4==0 && year%100!=100) || year%400==0){
+			leapflag = true
+		}else {
+			leapflag = false
+		}
+		return leapflag
+	}
+	var mydate = [],
+		mytime = [];
+	function current(){
+		mydate = [];
+		mytime = [];
+		for(var i=0;i<selectlength;i++){	
+			if(i<=2){
+				mydate.push(selectlists[i].value);
+			}else  {
+				mytime.push(selectlists[i].value);
+			}
+		}
+		var t = mydate.join("/").concat(" " + mytime.join(":"));
+		var choosetime = new Date(t);
+		return choosetime;
+	}
+	// 1 3 5 7 8 10 12
+	//  4 6 9 11
+	for(var i=0;i<selectlength;i++){
+		selectlists[i].onchange = function(){
+			leapYear(Number(selectlists[0].value))
+			if(selectlists[1].value=="2"){
+				if(leapflag){
+					selectlists[2].length=29;
+					selectlists[2].options[28].value=selectlists[2].options[28].text=29;
+				}else {
+					selectlists[2].length=28;
+				}
+			}else if (/1|3|5|7|8|10|12/.test(selectlists[1].value)) {
+				selectlists[2].length=31;
+				selectlists[2].options[28].value=selectlists[2].options[28].text=29;
+				selectlists[2].options[29].value=selectlists[2].options[29].text=30;
+				selectlists[2].options[30].value=selectlists[2].options[30].text=31;
+				console.log(selectlists[2].length)
+			}else if (/4|6|9|11/.test(selectlists[1].value)) {
+				selectlists[2].length=30;
+				selectlists[2].options[28].value=selectlists[2].options[28].text=29;
+				selectlists[2].options[29].value=selectlists[2].options[29].text=30;
+			}
+			current();
+			// selectresult.innerText = final(current)
+			final(current())
+			// console.log(selectlists[i].innerText)
+		}
+	}
+
+	//--------------------------------------------------------------------------------
+	//date
+	setInterval(final, 1000)
+	function ddtime(value){
+		var days = Math.floor(value/(24*3600*1000));
+		var l1 = value%(24*3600*1000);
+		var hours = Math.floor(l1/(3600*1000));
+		var l2 = l1%(3600*1000)
+		var minutes=Math.floor(l2/(60*1000))
+		var l3=l2%(60*1000)
+		var seconds=Math.round(l3/1000)
+
+		return [days,hours,minutes,seconds]
+	}
+	function final(date){
+		if(date==null){
+			var date = new Date(),
+				show = document.querySelector("#date");
+		}else {
+			var show = selectresult,
+				dshow = dvalue,
+				current = new Date(),
+				dtime,
+				str = "";
+			if(current.getTime()>date.getTime()){
+				str = "  已经过去:  ";
+				dtime =current.getTime() - date.getTime();
+				str += ddtime(dtime)[0] + "天 ";
+				str += ddtime(dtime)[1] + "时 ";
+				str += ddtime(dtime)[2] + "分 ";
+				str += ddtime(dtime)[3] + "秒 ";
+			}else {
+				str = "  还有:  ";
+				dtime =date.getTime() - current.getTime();
+				str += ddtime(dtime)[0] + "天 ";
+				str += ddtime(dtime)[1] + "时 ";
+				str += ddtime(dtime)[2] + "分 ";
+				str += ddtime(dtime)[3] + "秒 ";
+			}
+		}
+		var myday = ["日","一","二","三","四","五","六"],
+			mydate = ymd(date)[0] + "年" + full(ymd(date)[1]) + "月" + full(ymd(date)[2]) + "日",
+			mytime = full(time(date)[0]) + " : " + full(time(date)[1]) + " : " + full(time(date)[2]);
+			
+		show.innerText =  mydate + " 星期" + myday[day(date)] + " " +mytime
+		if(dshow) dshow.innerText = str
+	}
+	//获取当天星期
+	function day(date){
+		return date.getDay()
+	}
+	//获取年月日
+	function ymd(date){
+		var year = date.getFullYear(),
+			month = date.getMonth() + 1,
+			d = date.getDate()
+
+		return [year,month,d]
+	}
+	//获取时分秒
+	function time(date){
+		var h = date.getHours(),
+			m = date.getMinutes(),
+			s = date.getSeconds();
+
+		return [h,m,s]
+	}
+	//不足两位的，前方补"0"
+	function full(x){
+		if(x<10) x = "0" + x;
+		return x;
+	}
+	//----------------------------------------------------------------
+	//Go
+	function Go() {
+	    console.log("Go");
+	}
+
+	function GoSteps(n) {
+		//如果n可以转换为数字，并且数值大于0时，进行Go动作
+	    if(!(isNaN(Number(n))) && Number(n)>0){
+	    	//Math.floor()对浮点型进行向下取整动作
+    		console.log("\n当前n为：" + n + "，可执行Go()")
+	    	for(var i=0;i<Math.floor(Number(n));i++){
+	    		Go();
+	    	}
+	    }else {
+	    	console.log("\n当前n为：" + n + "，为错误参数")
+	    }
+
+	}
+
+	GoSteps(10); // Go 10次
+	GoSteps(1); // Go 1次
+	GoSteps(); // Go 1次，认为缺少参数时，默认参数为1
+	GoSteps(0);  // 0次
+	GoSteps(-1);  // 0次
+	GoSteps(1.4);  // Go 1次
+	GoSteps(1.6);  // Go 1次
+	GoSteps(-1);  // 0次
+	GoSteps(true);  // Go 1次
+	GoSteps(false);  // 0次
+	GoSteps("Test");  // 0次
+	GoSteps(NaN);  // 0次
+	GoSteps(null);  // 0次
+</script>
