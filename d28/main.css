@@ -1,0 +1,23 @@
+* {box-sizing: border-box;}
+ul,li{
+	padding: 0;
+	list-style: none;
+}
+ul.email-sug {
+	font-size: 14px;
+	display: none;
+	width: 500px;
+}
+ul.email-sug li {
+	padding: 5px 0;
+}
+ul.email-sug li span.mail {
+	float: left;
+}
+ul.email-sug li.change {
+	background-color: #00FF7F
+}
+ul.email-sug li:hover{
+	background-color: #87CEFF;
+	color: #fff
+}

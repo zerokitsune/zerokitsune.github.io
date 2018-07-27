@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>第二十八天到第三十天 给爱的人发个邮件吧</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+	<div class="wrapper">
+	    <input id="email-input" type="text">
+	    <ul id="email-sug-wrapper" class="email-sug">
+	    	<li></li>
+	    	<li></li>
+	    	<li></li>
+	    </ul>
+	</div>
+</body>
+</html>
+<script>
+	var ul = document.querySelector("#email-sug-wrapper"),
+		emailinput = document.querySelector("input#email-input");
+	
+	// for(i in postfixList){
+	// 	var li = document.createElement("li"),
+	// 		span = document.createElement("span");
+	// 	span.className = "mail";
+	// 	li.innerText = "@" + postfixList[i];
+	// 	li.append(span)
+	// 	ul.append(li)
+	// }
+	// function emailList(){
+	// 	if(this.value.replace(/\s|@/g,"")!==""){
+	// 		ul.style.display = 'block';
+	// 		var value = this.value.replace(/\s/g,"");;
+	// 		if(this.value.indexOf("@")>=0){
+	// 			value = this.value.substr(0,this.value.indexOf("@"))
+	// 		}
+	// 		var span = document.querySelectorAll("span.mail");
+	// 		// span.innerText = value;
+	// 		for(var i in span){
+	// 			span[i].innerText = value
+	// 		}
+	// 	}else {
+	// 		ul.style.display = 'none';
+	// 		console.log('非法字符')
+	// 	}
+		
+	// }
+
+	emailinput.focus()
+
+ 
+	function getInput(){
+		var content = document.querySelector("input#email-input").value,
+			tips = editInput(content);
+			
+			if(tips){
+				addList(tips);
+				ul.style.display = 'block'
+			}else {
+				ul.style.display = 'none'
+			}
+		
+		return tips;
+	}
+
+	function editInput(content){
+		if(content.replace(/\s|@|@.*/g,"")!==""){
+			var after = "";
+			var tip = content.replace(/\s/g,"")
+			if(tip.indexOf("@")>=0){
+				after = tip.replace(/.*@/,"");
+				tip = tip.slice(0, tip.indexOf("@"));
+			}
+			var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+			var tips = []
+			var patt = new RegExp(after)
+			for(var i in postfixList){
+				if(patt.test(postfixList[i]) && tip!=""){
+					var li = document.createElement("li"),
+					span = document.createElement("span");
+					if(i==0) li.className = "change"
+					span.className = "mail";
+					li.innerText = tip + "@" + postfixList[i];
+					tips.push(li)
+				}
+				// li.append(span)
+			}
+
+		}else {
+			return false;
+		}
+		return tips;
+	}
+	function addList(tips){
+		ul.innerHTML = ""
+		for(var i in tips){
+			ul.append(tips[i])		}
+	}
+	emailinput.addEventListener("keyup",function(){
+		getInput();
+	})
+	ul.addEventListener("click", function(e){
+		emailinput.value = e.target.innerText;
+		emailinput.focus();
+		ul.style.display = 'none'
+	})
+	var index = 0;
+	document.onkeyup = function(e){
+		if(ul.offsetParent!=null){
+			var length = ul.childNodes.length;
+			if(e.which == 40){
+				ul.childNodes[0].className = ""
+				index++ ;
+				if(index > length - 1){
+					index = 0;
+				}
+				ul.childNodes[index].style.backgroundColor = "#00FF7F"
+			}
+			if(e.which == 38){
+				ul.childNodes[0].className = ""
+				index-- ;
+				if(index < 0){
+					index = length - 1;
+				}
+				ul.childNodes[index].style.backgroundColor = "#00FF7F"
+			}
+			if(e.which == 13){
+				emailinput.value = ul.childNodes[index].innerHTML;
+				emailinput.focus();
+				ul.style.display = 'none'
+			}
+			if(e.which == 27){
+				emailinput.value = ul.childNodes[0].innerHTML;
+				emailinput.focus();
+				ul.style.display = 'none'
+			}
+		}
+		
+	}
+	
+	
+</script>
