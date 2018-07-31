@@ -1,0 +1,23 @@
+* {
+	box-sizing: border-box;
+}
+html,body {
+	background-color: #f9f9f5;
+}
+table {
+	/*background-color: #000*/
+	width: 80%;
+	margin: 0 auto;
+	border-collapse: collapse;
+	text-align: left;
+	margin-top: 100px;
+	border: 1px solid #ddd
+}
+
+th,td {
+	padding: 3px 10px;
+	outline: none;
+}
+tbody tr:nth-child(odd){
+	background-color: #ddd;
+}

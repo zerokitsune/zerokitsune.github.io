@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>第三十一到第三十三天：我是精明的小卖家（一）</title>
+	<script type="text/javascript" src="data.js"></script>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+	<div class="wrap">
+		<div class="area">
+			<span>地区：</span>
+			<label>华东
+		    	<input type="checkbox" name="area-obj" value="华东">
+		    </label>
+		    <label>华南
+		    	<input type="checkbox" name="area-obj" value="华南">
+		    </label>
+		    <label>华北
+		    	<input type="checkbox" name="area-obj" value="华北">
+		    </label>
+		    <label>全选
+		    	<input type="checkbox" name="area-obj" value="全选">
+		    </label>	    
+		</div>
+		<div class="product">
+			<span>产品：</span>
+			<label>手机
+		    	<input type="checkbox" name="product-obj" value="手机">
+		    </label>
+		    <label>笔记本
+		    	<input type="checkbox" name="product-obj" value="笔记本">
+		    </label>
+		    <label>智能音箱
+		    	<input type="checkbox" name="product-obj" value="智能音箱">
+		    </label>
+		    <label>全选
+		    	<input type="checkbox" name="product-obj" value="全选">
+		    </label>
+		</div>
+	</div>
+	
+	<div id="table-wrapper">
+		<table id="data-table">
+			<thead id="data-head"></thead>
+			<tbody id="data-body"></tbody>
+		</table>
+	</div>
+</body>
+</html>
+<script>
+	var checkbox = document.querySelectorAll("input[type='checkbox']"),
+		// radio = document.querySelectorAll("input[type='radio']")
+		wrap = document.querySelector(".wrap"),
+		tableWrapper = document.querySelector("#table-wrapper");
+
+	
+	wrap.addEventListener("click", function(e){
+		let data = []
+		if(e.target.nodeName == "INPUT"){
+			if(e.target.value == "全选"){
+				if(!e.target.checked){
+					for(let i in e.target.parentElement.parentElement.querySelectorAll("input")){
+						e.target.parentElement.parentElement.querySelectorAll("input")[i].checked = false
+					}
+				}else {
+					for(let i in e.target.parentElement.parentElement.querySelectorAll("input")){
+						e.target.parentElement.parentElement.querySelectorAll("input")[i].checked = true
+					}
+				}
+				
+			}else {
+				if(!e.target.checked){
+					e.target.parentElement.parentElement.querySelectorAll("input")[3].checked = false
+				}else {
+					let num = 0;
+					for(let i in e.target.parentElement.parentElement.querySelectorAll("input")){
+						if(e.target.parentElement.parentElement.querySelectorAll("input")[i].checked && e.target.parentElement.parentElement.querySelectorAll("input")[i].type == "checkbox"){
+							num++;
+						}
+					}
+					if(num>=3) e.target.parentElement.parentElement.querySelectorAll("input")[3].checked = true
+				}
+			}
+
+			for(let i in checkbox){
+				if(checkbox[i].checked && checkbox[i].value!="全选" && checkbox[i].type == "checkbox"){
+					data.push(checkbox[i])
+				}
+			}
+			
+		}
+		if(data.length!=0){
+			// console.log(data)
+			let t = getData(data)
+			newTb(t)
+		}
+		
+		// newTb(getData(data))
+		// if(e.target.checked){
+		// 	let data = getData(e.target)
+		// 	newTb(data)
+		// }
+	})
+
+	function getData(radio){
+		// console.log(radio.length)
+		let data = []
+		let final = []
+		if(radio.length > 1){
+			for(let i in sourceData){
+				for(let j in radio){
+					if(sourceData[i].region == radio[j].value){
+						data.push(sourceData[i])
+						// if(sourceData[i].region == radio.value){
+						// 	console.log(sourceData[i].product)
+						// }
+					}
+				}
+			}
+			for(let i in data){
+				for(let j in radio){
+					if(data[i].product == radio[j].value){
+						final.push(data[i])
+					}
+				}
+			}
+		}else {
+			// console.log(radio[0])
+			for(let i in sourceData){
+				if(sourceData[i].region == radio[0].value || sourceData[i].product == radio[0].value){
+					final.push(sourceData[i])
+				}
+			}
+		}
+		
+		return final
+	}
+	function newTb(data){
+		let tbhead = ["商品","地区","一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"];
+		let table = document.querySelector("#data-table");
+		let tbody = document.createElement("tbody");
+		table.innerHTML = "";	
+		let thead = document.createElement("thead");
+		let tr = document.createElement("tr");
+		for(let i in tbhead){
+			let th = document.createElement("th");
+			th.innerText = tbhead[i];
+			tr.appendChild(th)
+		}
+		thead.appendChild(tr)
+		table.appendChild(thead)
+		table.appendChild(tbody)
+
+		for(let i in data){
+			let newTr = "<tr>";
+			newTr += "<td>" + data[i].product + "</td>" + "<td>" + data[i].region + "</td>";
+			for(j in data[i].sale){
+				newTr += "<td contenteditable='true'>" + data[i].sale[j] + "</td>"
+			}
+			newTr += "</tr>"
+			// console.log(newTr)
+			tbody.innerHTML += newTr
+		}
+	}
+</script>
